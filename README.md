@@ -1,0 +1,1 @@
+Library App from The Odin Project, main goal is to learn about objects and how to utilize them

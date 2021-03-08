@@ -1,0 +1,19 @@
+/*Author: Dylan Parson
+    Date: Feb 24, 2021
+    Purpose: Library app, user can enter information for books they would like to store
+             user can view all books entered, and delete books-
+*/
+ul {
+  list-style: none;
+}
+#books {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
+  grid-column-gap: 2%;
+  grid-row-gap: 2%;
+}
+.bookCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
