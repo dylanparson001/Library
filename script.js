@@ -1,7 +1,7 @@
 /*Author: Dylan Parson
     Date: Feb 24, 2021
     Purpose: Library app, user can enter information for books they would like to store
-             user can view all books entered, and delete books- dsd*/
+             user can view all books entered, and delete books*/
 
 let currentLibrary = [];
 
