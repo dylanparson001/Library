@@ -33,6 +33,7 @@ function addCard() {
   //DOM variables to create new Book card
   const booksElem = document.getElementById("books"); //selects books wrapper
   const newBook = document.createElement("table"); // creates list wrapper
+  newBook.classList.add("bookCard");
   const bookTitle = document.createElement("tr"); // creates list item for the title
   const bookAuthor = document.createElement("tr"); // creates list item for the author
   const bookPages = document.createElement("tr"); // creates list item for the pages
@@ -66,10 +67,9 @@ function deleteCurrentBook(value, booksElem) {
   currentLibrary.splice(value, 1);
   booksElem.textContent = "";
   
-  if (currentLibrary.length === 0) {
+  if (currentLibrary.length === 0) { // won't display empty table
     return;
   }
-
   displayNewLibrary();
 }
 
@@ -79,6 +79,7 @@ function displayNewLibrary() {
   for (let i = 0; i < currentLibrary.length; i++) {
     const booksElem = document.getElementById("books"); //selects books wrapper
     const newBook = document.createElement("table"); // creates list wrapper
+    newBook.classList.add("bookCard")
     const bookTitle = document.createElement("tr"); // creates list item for the title
     const bookAuthor = document.createElement("tr"); // creates list item for the author
     const bookPages = document.createElement("tr"); // creates list item for the pages
