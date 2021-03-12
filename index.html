@@ -11,10 +11,15 @@
   </head>
 
   <body>
-    <h1>Welcome to the library</h1>
-    <div class="buttons">
-      <button value="addBook" id="addBook">Add Book</button>
-    </div>
+    <h1>Book Collection</h1>
+    <form id = "newBook">
+      <label for = "Title" ></label>
+      <input placeholder="Title" type = "text" name = "title" class = "formItems" required>
+      <input placeholder="Author" type = "text" name="author" class = "formItems" required>
+      <input placeholder="Pages" type="number" name ="pages" class = "formItems" required>
+      <input type = "button" value = "Read" name = "read" class = "formItems" >
+      <input type = "submit" value = "Submit New Book" class = "formItems" id = "submit"></input>
+    </form>
 
     <div id="books"></div>
   </body>

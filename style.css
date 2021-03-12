@@ -3,9 +3,23 @@
     Purpose: Library app, user can enter information for books they would like to store
              user can view all books entered, and delete books-
 */
-ul {
-  list-style: none;
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+
 }
+
+#newBook{
+  display: flex;
+  flex-direction: column;
+  width: 15%;
+  justify-content: space-around;
+}
+.formItems{
+  margin: 1em;
+}
+
 #books {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));

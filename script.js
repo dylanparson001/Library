@@ -20,10 +20,12 @@ addButton.addEventListener("click", () => {
 //Adds new book to library
 function addToLibrary() {
   const newBook = new Book();
-  newBook.title = prompt("What is the title of the book?"); // will need to be a form
-  newBook.author = prompt("And the author?");
-  newBook.pages = prompt("And the pages?");
-  newBook.read = prompt("Have you read it?");
+  const bookForm = document.getElementById("submit");
+  
+  bookForm.addEventListener("submit", (event) =>{
+
+  })
+
   currentLibrary.push(newBook);
   addCard();
   return currentLibrary;
