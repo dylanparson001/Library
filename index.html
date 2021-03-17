@@ -12,13 +12,18 @@
 
   <body>
     <h1>Book Collection</h1>
-    <form id = "newBook">
-      <label for = "Title" ></label>
-      <input placeholder="Title" type = "text" name = "title" class = "formItems" required>
-      <input placeholder="Author" type = "text" name="author" class = "formItems" required>
-      <input placeholder="Pages" type="number" name ="pages" class = "formItems" required>
-      <input type = "button" value = "Read" name = "read" class = "formItems" >
-      <input type = "submit" value = "Submit New Book" class = "formItems" id = "submit"></input>
+    <form name = "newBook" id = "newBook" onsubmit = "addToLibrary(); return false">
+      <label for = "Title" >Title</label>
+      <input type = "text" name = "title" class = "formItems" id = "title" required>
+
+      <label for = "Author">Author</label>
+      <input type = "text" name="author" class = "formItems" id = "author" required>
+
+      <label for = "Number of Pages" >Number of pages</label>
+      <input type="number" name ="pages" class = "formItems" id = "pages" required>
+
+      <input type = "button" value = "Read" name = "read" class = "formItems">
+      <input type = "submit" value = "Submit" class = "formItems" id = "submit" ></input>
     </form>
 
     <div id="books"></div>

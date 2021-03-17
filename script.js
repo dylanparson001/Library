@@ -4,6 +4,8 @@
              user can view all books entered, and delete books*/
 
 //Book Constructor
+let currentLibrary = [];
+
 function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
@@ -11,35 +13,29 @@ function Book(title, author, pages, read) {
   this.read = read;
 }
 
-let currentLibrary = [];
-const addButton = document.getElementById("addBook");
-
-addButton.addEventListener("click", () => {
-  addToLibrary();
-});
-//Adds new book to library
 function addToLibrary() {
   const newBook = new Book();
-  const bookForm = document.getElementById("submit");
-  
-  bookForm.addEventListener("submit", (event) =>{
+  const bookForm = document.getElementById("newBook");
 
-  })
+  newBook.title = bookForm[0].value;
+  newBook.author = bookForm[1].value;
+  newBook.pages = bookForm[2].value;
 
   currentLibrary.push(newBook);
+  document.getElementById("newBook").reset();
   addCard();
-  return currentLibrary;
 }
 //Creates new card
 function addCard() {
   //DOM variables to create new Book card
   const booksElem = document.getElementById("books"); //selects books wrapper
-  const newBook = document.createElement("table"); // creates list wrapper
+  const newBook = document.createElement("table"); // creates table
   newBook.classList.add("bookCard");
-  const bookTitle = document.createElement("tr"); // creates list item for the title
-  const bookAuthor = document.createElement("tr"); // creates list item for the author
-  const bookPages = document.createElement("tr"); // creates list item for the pages
-  const bookRead = document.createElement("tr"); // creates list item for if the user has read the book
+
+  const bookTitle = document.createElement("tr"); // creates table row for the title
+  const bookAuthor = document.createElement("tr"); // creates table row for the author
+  const bookPages = document.createElement("tr"); // creates table row for the pages
+  const bookRead = document.createElement("tr"); // creates table row for if the user has read the book
   const deleteBook = document.createElement("button");
 
   for (let i = 0; i < currentLibrary.length; i++) {
@@ -62,6 +58,7 @@ function addCard() {
   newBook.append(bookRead);
   newBook.append(deleteBook);
   booksElem.append(newBook);
+
 }
 
 function deleteCurrentBook(value, booksElem) {
