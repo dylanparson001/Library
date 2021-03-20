@@ -10,7 +10,7 @@ function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
   this.pages = pages;
-  this.read = read;
+  this.read = true;
 }
 
 function addToLibrary() {
@@ -25,6 +25,7 @@ function addToLibrary() {
   document.getElementById("newBook").reset();
   addCard();
 }
+
 //Creates new card
 function addCard() {
   //DOM variables to create new Book card
@@ -35,15 +36,15 @@ function addCard() {
   const bookTitle = document.createElement("tr"); // creates table row for the title
   const bookAuthor = document.createElement("tr"); // creates table row for the author
   const bookPages = document.createElement("tr"); // creates table row for the pages
-  const bookRead = document.createElement("tr"); // creates table row for if the user has read the book
+  const bookRead = document.createElement("button"); // creates table row for if the user has read the book
   const deleteBook = document.createElement("button");
 
   for (let i = 0; i < currentLibrary.length; i++) {
     bookTitle.textContent = currentLibrary[i].title;
     bookAuthor.textContent = currentLibrary[i].author;
     bookPages.textContent = currentLibrary[i].pages;
-    bookRead.textContent = currentLibrary[i].read;
-
+    bookRead.textContent = (currentLibrary[i].read ? "Finished" : "Not Finished");
+    bookRead.classList.add("readButtons");
     deleteBook.setAttribute("value", i);
     deleteBook.textContent = "Delete Book";
   }
@@ -51,6 +52,12 @@ function addCard() {
   deleteBook.addEventListener("click", () => {
     deleteCurrentBook(deleteBook.value, booksElem);
   });
+  
+  bookRead.addEventListener("click", () =>{
+    currentLibrary[deleteBook.value].read = !currentLibrary[deleteBook.value].read;
+    bookRead.textContent = (currentLibrary[deleteBook.value].read ? "Finished" : "Not Finished");
+    bookRead.classList.toggle("notFinished");
+  })
 
   newBook.append(bookTitle);
   newBook.append(bookAuthor);
@@ -76,31 +83,43 @@ function deleteCurrentBook(value, booksElem) {
    addCard will only display last index of currentLibrary */
 function displayNewLibrary() {
   for (let i = 0; i < currentLibrary.length; i++) {
-    const booksElem = document.getElementById("books"); //selects books wrapper
-    const newBook = document.createElement("table"); // creates list wrapper
-    newBook.classList.add("bookCard")
-    const bookTitle = document.createElement("tr"); // creates list item for the title
-    const bookAuthor = document.createElement("tr"); // creates list item for the author
-    const bookPages = document.createElement("tr"); // creates list item for the pages
-    const bookRead = document.createElement("tr"); // creates list item for if the user has read the book
-    const deleteBook = document.createElement("button");
+
+    //DOM variables to create new Book card
+  const booksElem = document.getElementById("books"); //selects books wrapper
+  const newBook = document.createElement("table"); // creates table
+  newBook.classList.add("bookCard");
+
+  const bookTitle = document.createElement("tr"); // creates table row for the title
+  const bookAuthor = document.createElement("tr"); // creates table row for the author
+  const bookPages = document.createElement("tr"); // creates table row for the pages
+  const bookRead = document.createElement("button"); // creates table row for if the user has read the book
+  const deleteBook = document.createElement("button");
+
+  for (let i = 0; i < currentLibrary.length; i++) {
     bookTitle.textContent = currentLibrary[i].title;
     bookAuthor.textContent = currentLibrary[i].author;
     bookPages.textContent = currentLibrary[i].pages;
-    bookRead.textContent = currentLibrary[i].read;
-
+    bookRead.textContent = (currentLibrary[i].read ? "Finished" : "Not Finished");
+    bookRead.classList.add("readButtons");
     deleteBook.setAttribute("value", i);
     deleteBook.textContent = "Delete Book";
-
-    deleteBook.addEventListener("click", () => {
-      deleteCurrentBook(deleteBook.value, booksElem);
-    });
-
-    newBook.append(bookTitle);
-    newBook.append(bookAuthor);
-    newBook.append(bookPages);
-    newBook.append(bookRead);
-    newBook.append(deleteBook);
-    booksElem.append(newBook);
   }
+
+  deleteBook.addEventListener("click", () => {
+    deleteCurrentBook(deleteBook.value, booksElem);
+  });
+  
+  bookRead.addEventListener("click", () =>{
+    currentLibrary[deleteBook.value].read = !currentLibrary[deleteBook.value].read;
+    bookRead.textContent = (currentLibrary[deleteBook.value].read ? "Finished" : "Not Finished");
+    bookRead.classList.toggle("notFinished");
+  })
+
+  newBook.append(bookTitle);
+  newBook.append(bookAuthor);
+  newBook.append(bookPages);
+  newBook.append(bookRead);
+  newBook.append(deleteBook);
+  booksElem.append(newBook);
+}
 }

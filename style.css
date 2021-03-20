@@ -33,3 +33,10 @@ input::-webkit-inner-spin-button {
   justify-content: space-evenly;
 
 }
+
+.readButtons{
+  background-color: green;
+}
+.notFinished{
+  background-color: red;
+}
