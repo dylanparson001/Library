@@ -11,15 +11,15 @@
   </head>
 
   <body>
-    <form name = "newBook" id = "newBook" onsubmit = "addToLibrary(); return false">
+    <form name = "newBookForm" id = "newBookForm" onsubmit = "addToLibrary(); return false">
       <h1>Book Collection</h1>
-      <label for = "Title" >Title</label>
+      <label for = "Title"  class = "formItems" >Title</label>
       <input type = "text" name = "title" class = "formItems" id = "title" required>
 
-      <label for = "Author">Author</label>
+      <label for = "Author"  class = "formItems" >Author</label>
       <input type = "text" name="author" class = "formItems" id = "author" required>
 
-      <label for = "Number of Pages" >Number of pages</label>
+      <label for = "Number of Pages"  class = "formItems" >Number of pages</label>
       <input type="number" name ="pages" class = "formItems" id = "pages" required>
 
       <input type = "submit" value = "Submit" class = "formItems" id = "submit" ></input>

@@ -3,6 +3,7 @@
     Purpose: Library app, user can enter information for books they would like to store
              user can view all books entered, and delete books-
 */
+@import url('https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap');
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -10,14 +11,22 @@ input::-webkit-inner-spin-button {
 
 }
 
-#newBook{
+body{
+  font-family: 'New Tegomin', serif;
+}
+
+#newBookForm{
   display: flex;
   flex-direction: column;
-  width: 15%;
-  justify-content: space-around;
+  width: 50%;
+  margin: 0 auto;
 }
 .formItems{
-  margin: 1em;
+  margin: 0.5em;
+}
+#submit{
+  padding: 1.5em;
+  background-color: #a5f397;
 }
 
 #books {
@@ -31,12 +40,37 @@ input::-webkit-inner-spin-button {
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-
+  border: solid #614729;
+  background-color: #f1cba0;
 }
-
-.readButtons{
-  background-color: green;
+.bookCard tr {
+  text-align: center;
+  margin: 0.5em;
+  width: 100%;
+}
+.bookCard button{
+  margin: 0.5em;
+  width: 60%;
+}
+.finished{
+  background-color: #AAFFAA;
 }
 .notFinished{
-  background-color: red;
+  background-color: #fa9595;
+}
+.delete{
+  background-color: #000000;
+  color: #FFF;
+}
+
+@media (max-width: 650px){
+  #newBookForm{
+    width: 80%;
+  }
+  #books{
+    display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+  grid-column-gap: 2%;
+  grid-row-gap: 2%;
+  }
 }
