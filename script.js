@@ -61,7 +61,9 @@ function addCard() {
     bookRead.textContent = currentLibrary[deleteBook.value].read
       ? "Finished"
       : "Not Finished";
+    
     bookRead.classList.toggle("notFinished");
+
     console.log(currentLibrary[deleteBook.value].read);
   });
 
@@ -105,7 +107,10 @@ function displayNewLibrary() {
     bookAuthor.textContent = currentLibrary[i].author;
     bookPages.textContent = currentLibrary[i].pages;
     bookRead.textContent = currentLibrary[i].read ? "Finished" : "Not Finished";
-    bookRead.classList.add("finished");
+    currentLibrary[i].read
+      ? bookRead.classList.add("finished")
+      : bookRead.classList.add("notFinished");
+
     deleteBook.setAttribute("value", i);
     deleteBook.textContent = "Delete Book";
     deleteBook.classList.add("delete");
@@ -117,10 +122,15 @@ function displayNewLibrary() {
     bookRead.addEventListener("click", () => {
       currentLibrary[deleteBook.value].read = !currentLibrary[deleteBook.value]
         .read;
-      bookRead.textContent = currentLibrary[deleteBook.value].read
-        ? "Finished"
-        : "Not Finished";
-      bookRead.classList.toggle("notFinished");
+
+        if(currentLibrary[deleteBook.value].read === true){
+          bookRead.textContent = "Finished"
+          bookRead.classList = "finished";
+        }
+        else {
+          bookRead.textContent = "Not Finished"
+          bookRead.classList = "notFinished";
+        }
     });
 
     newBook.append(bookTitle);
