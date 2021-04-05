@@ -3,30 +3,34 @@
     Purpose: Library app, user can enter information for books they would like to store
              user can view all books entered, and delete books-
 */
-@import url('https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap");
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
-
 }
 
-body{
-  font-family: 'New Tegomin', serif;
+body {
+  font-family: "New Tegomin", serif;
 }
-
-#newBookForm{
+h1{
+  text-align: center;
+}
+#newBookForm {
   display: flex;
   flex-direction: column;
   width: 50%;
   margin: 0 auto;
 }
-.formItems{
-  margin: 0.5em;
+.formItems {
+  margin-top: 3%;
+  width: 100%;
 }
-#submit{
-  padding: 1.5em;
+#submit {
   background-color: #a5f397;
+  font-size: 2em;
+  width: 50%;
+  align-self: center;
 }
 
 #books {
@@ -48,29 +52,34 @@ body{
   margin: 0.5em;
   width: 100%;
 }
-.bookCard button{
+.bookCard button {
   margin: 0.5em;
   width: 60%;
 }
-.finished{
-  background-color: #AAFFAA;
+
+.finished {
+  background-color: #aaffaa;
 }
-.notFinished{
+.notFinished {
   background-color: #fa9595;
 }
-.delete{
-  background-color: #000000;
-  color: #FFF;
+.delete {
+  background-color: #e72727f5;
+  color: #fff;
 }
 
-@media (max-width: 650px){
-  #newBookForm{
-    width: 80%;
+@media (max-width: 650px) {
+  #newBookForm {
+    width: 100%;
+
   }
-  #books{
+  #books {
     display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
-  grid-column-gap: 2%;
-  grid-row-gap: 2%;
+    grid-template-columns: repeat(auto-fill, minmax(100%, 2fr));
+    grid-column-gap: 2%;
+    grid-row-gap: 2%;
+  }
+  .bookCard{
+    margin-top: 5%;
   }
 }

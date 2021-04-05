@@ -8,10 +8,11 @@
     <title>Library</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="style.css" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
   </head>
 
   <body>
-    <form name = "newBookForm" id = "newBookForm" onsubmit = "addToLibrary(); return false">
+    <form name = "newBookForm" id = "newBookForm" onsubmit = "return false">
       <h1>Book Collection</h1>
       <label for = "Title"  class = "formItems" >Title</label>
       <input type = "text" name = "title" class = "formItems" id = "title" required>

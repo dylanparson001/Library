@@ -2,27 +2,40 @@
     Date: Feb 24, 2021
     Purpose: Library app, user can enter information for books they would like to store
              user can view all books entered, and delete books*/
-
-//Book Constructor
+//localStorage.clear();
 let currentLibrary = [];
-
+  
+//Book Constructor
 function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.read = true;
 }
+if (localStorage.length > 0){
+  for(let i = 0; i < localStorage.length; i++){
+    let key = localStorage.key(i);
+    currentLibrary = JSON.parse(localStorage.getItem(key));
+  }
+  displayNewLibrary();
+}
+
+const bookForm = document.getElementById("newBookForm");
+bookForm.addEventListener("submit", addToLibrary);
 
 function addToLibrary() {
   const newBook = new Book();
-  const bookForm = document.getElementById("newBookForm");
-
-  newBook.title = bookForm[0].value;
-  newBook.author = bookForm[1].value;
-  newBook.pages = bookForm[2].value;
-  console.table(currentLibrary);
-
+  
+  newBook.title = bookForm.querySelector("#title").value;
+  newBook.author = bookForm.querySelector("#author").value;
+  newBook.pages = bookForm.querySelector("#pages").value;
+  
   currentLibrary.push(newBook);
+  
+  localStorage.setItem(JSON.stringify(currentLibrary[currentLibrary.length - 1].title), JSON.stringify(currentLibrary));
+  console.log(currentLibrary);
+  console.log(localStorage.getItem(JSON.stringify(newBook.title)));
+  
   document.getElementById("newBookForm").reset();
   addCard();
 }
@@ -56,8 +69,7 @@ function addCard() {
   });
 
   bookRead.addEventListener("click", () => {
-    currentLibrary[deleteBook.value].read = !currentLibrary[deleteBook.value]
-      .read;
+    currentLibrary[deleteBook.value].read = !currentLibrary[deleteBook.value].read; //toggles read status
     bookRead.textContent = currentLibrary[deleteBook.value].read
       ? "Finished"
       : "Not Finished";
@@ -76,20 +88,23 @@ function addCard() {
 }
 
 function deleteCurrentBook(value, booksElem) {
+  console.table(currentLibrary[value].title);
+  localStorage.removeItem(JSON.stringify(currentLibrary[value].title));
+  console.table(localStorage);
   // delete both the book in the currentLibrary array, along with on the DOM and refresh to show current library
   currentLibrary.splice(value, 1);
   booksElem.textContent = "";
-
+  
   if (currentLibrary.length === 0) {
     // won't display empty table
     return;
   }
-
+  
   displayNewLibrary();
 }
 
-/* same as addCard function, only the entire thing is in the loop.
-   addCard will only display last index of currentLibrary */
+  //same as addCard function, only the entire thing is in the loop.
+  //addCard will only display last index of currentLibrary 
 function displayNewLibrary() {
   //DOM variables to create new Book card
   for (let i = 0; i < currentLibrary.length; i++) {
