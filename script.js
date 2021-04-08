@@ -4,7 +4,7 @@
              user can view all books entered, and delete books*/
 //localStorage.clear();
 let currentLibrary = [];
-  
+console.log(localStorage);
 //Book Constructor
 function Book(title, author, pages, read) {
   this.title = title;
@@ -12,29 +12,38 @@ function Book(title, author, pages, read) {
   this.pages = pages;
   this.read = true;
 }
-if (localStorage.length > 0){
-  for(let i = 0; i < localStorage.length; i++){
-    let key = localStorage.key(i);
-    currentLibrary = JSON.parse(localStorage.getItem(key));
+window.addEventListener('load', () =>{
+  if (localStorage.length > 0){
+    for(let i = 0; i < localStorage.length; i++){
+      let key = localStorage.key(i);
+      currentLibrary.push(JSON.parse(localStorage.getItem(key)));
+    }
+    displayNewLibrary();
   }
-  displayNewLibrary();
-}
+});
+
+const clearButton = document.getElementById("clear");
+clearButton.addEventListener("click", () =>{
+  localStorage.clear();
+  currentLibrary.length = 0;
+  window.location.reload();
+});
 
 const bookForm = document.getElementById("newBookForm");
 bookForm.addEventListener("submit", addToLibrary);
 
 function addToLibrary() {
   const newBook = new Book();
-  
+
   newBook.title = bookForm.querySelector("#title").value;
   newBook.author = bookForm.querySelector("#author").value;
   newBook.pages = bookForm.querySelector("#pages").value;
   
   currentLibrary.push(newBook);
   
-  localStorage.setItem(JSON.stringify(currentLibrary[currentLibrary.length - 1].title), JSON.stringify(currentLibrary));
-  console.log(currentLibrary);
-  console.log(localStorage.getItem(JSON.stringify(newBook.title)));
+  localStorage.setItem(JSON.stringify(currentLibrary[currentLibrary.length - 1].title), JSON.stringify(currentLibrary[currentLibrary.length - 1]));
+
+  console.table(localStorage.getItem(JSON.stringify(newBook.title)));
   
   document.getElementById("newBookForm").reset();
   addCard();
