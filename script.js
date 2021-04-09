@@ -2,9 +2,9 @@
     Date: Feb 24, 2021
     Purpose: Library app, user can enter information for books they would like to store
              user can view all books entered, and delete books*/
-//localStorage.clear();
+
 let currentLibrary = [];
-console.log(localStorage);
+
 //Book Constructor
 function Book(title, author, pages, read) {
   this.title = title;
@@ -12,9 +12,9 @@ function Book(title, author, pages, read) {
   this.pages = pages;
   this.read = true;
 }
-window.addEventListener('load', () =>{
-  if (localStorage.length > 0){
-    for(let i = 0; i < localStorage.length; i++){
+window.addEventListener("load", () => {
+  if (localStorage.length > 0) {
+    for (let i = 0; i < localStorage.length; i++) {
       let key = localStorage.key(i);
       currentLibrary.push(JSON.parse(localStorage.getItem(key)));
     }
@@ -23,7 +23,7 @@ window.addEventListener('load', () =>{
 });
 
 const clearButton = document.getElementById("clear");
-clearButton.addEventListener("click", () =>{
+clearButton.addEventListener("click", () => {
   localStorage.clear();
   currentLibrary.length = 0;
   window.location.reload();
@@ -38,13 +38,14 @@ function addToLibrary() {
   newBook.title = bookForm.querySelector("#title").value;
   newBook.author = bookForm.querySelector("#author").value;
   newBook.pages = bookForm.querySelector("#pages").value;
-  
-  currentLibrary.push(newBook);
-  
-  localStorage.setItem(JSON.stringify(currentLibrary[currentLibrary.length - 1].title), JSON.stringify(currentLibrary[currentLibrary.length - 1]));
 
-  console.table(localStorage.getItem(JSON.stringify(newBook.title)));
-  
+  currentLibrary.push(newBook);
+
+  localStorage.setItem(
+    JSON.stringify(currentLibrary[currentLibrary.length - 1].title),
+    JSON.stringify(currentLibrary[currentLibrary.length - 1])
+  );
+
   document.getElementById("newBookForm").reset();
   addCard();
 }
@@ -78,14 +79,13 @@ function addCard() {
   });
 
   bookRead.addEventListener("click", () => {
-    currentLibrary[deleteBook.value].read = !currentLibrary[deleteBook.value].read; //toggles read status
+    currentLibrary[deleteBook.value].read = !currentLibrary[deleteBook.value]
+      .read; //toggles read status
     bookRead.textContent = currentLibrary[deleteBook.value].read
       ? "Finished"
       : "Not Finished";
-    
-    bookRead.classList.toggle("notFinished");
 
-    console.log(currentLibrary[deleteBook.value].read);
+    bookRead.classList.toggle("notFinished");
   });
 
   newBook.append(bookTitle);
@@ -97,23 +97,21 @@ function addCard() {
 }
 
 function deleteCurrentBook(value, booksElem) {
-  console.table(currentLibrary[value].title);
   localStorage.removeItem(JSON.stringify(currentLibrary[value].title));
-  console.table(localStorage);
   // delete both the book in the currentLibrary array, along with on the DOM and refresh to show current library
   currentLibrary.splice(value, 1);
   booksElem.textContent = "";
-  
+
   if (currentLibrary.length === 0) {
     // won't display empty table
     return;
   }
-  
+
   displayNewLibrary();
 }
 
-  //same as addCard function, only the entire thing is in the loop.
-  //addCard will only display last index of currentLibrary 
+//same as addCard function, only the entire thing is in the loop.
+//addCard will only display last index of currentLibrary
 function displayNewLibrary() {
   //DOM variables to create new Book card
   for (let i = 0; i < currentLibrary.length; i++) {
@@ -147,14 +145,13 @@ function displayNewLibrary() {
       currentLibrary[deleteBook.value].read = !currentLibrary[deleteBook.value]
         .read;
 
-        if(currentLibrary[deleteBook.value].read === true){
-          bookRead.textContent = "Finished"
-          bookRead.classList = "finished";
-        }
-        else {
-          bookRead.textContent = "Not Finished"
-          bookRead.classList = "notFinished";
-        }
+      if (currentLibrary[deleteBook.value].read === true) {
+        bookRead.textContent = "Finished";
+        bookRead.classList = "finished";
+      } else {
+        bookRead.textContent = "Not Finished";
+        bookRead.classList = "notFinished";
+      }
     });
 
     newBook.append(bookTitle);
